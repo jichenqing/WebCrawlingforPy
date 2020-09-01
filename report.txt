@@ -1,0 +1,225 @@
+Below is a report of the single-threaded web crawling project.
+
+
+Seed URLs: 
+https://www.ics.uci.edu,
+https://www.cs.uci.edu,
+https://www.informatics.uci.edu,
+https://www.stat.uci.edu,
+https://today.uci.edu/department/information_computer_sciences
+
+
+To-be Crawled URLs:
+*.ics.uci.edu/*
+*.cs.uci.edu/*
+*.informatics.uci.edu/*
+*.stat.uci.edu/*
+today.uci.edu/department/information_computer_sciences/*
+
+
+Unique Page Must Have: 
+1. Valid URL: 
+	- schema [ http, https], 
+	- within the domains listed above, 
+	- respond within 5 seconds, 
+	- allowed to crawl according to robots.txt, 
+	- status code [200, 202],  
+	- content type ["text/plain", "text/html", "application/xml", "text/xml"], 
+	- path not ended with a file extension,
+	- not raised errors [urllib.error.HTTPError, urllib.error.URLError, requests.exceptions.Timeout, requests.exceptions.ConnectionError, requests.exceptions.MissingSchema, requests.exceptions.InvalidSchema, etc.]
+2. No Fragment Part in URL
+3. Any Words in Content (Excluded Markups)
+
+
+The subdomain list of ics.uci.edu below does not show the complete URLs but only the hostnames instead. If I could run the crawler once more, I would fix this by changing the key of the dictionary that collects the subdomains of ics.uci.edu from [parsed_url.hostname] to [parsed_url.scheme+"://"+parsed_url.hostname] , then writes one key and sum(dictionary[key]) per line.
+
+
+"robots.txt" extra credit attempt:
+The hasrobot() function in scraper.py takes the URL and seeks robots.txt in the authority. If robots.txt exists, add the parsed URL of the given URL as key and parsed robot text as value to the dictionary and returns True. 
+When determining whether a URL is valid in is_valid() function and adding links found in a particular page in extract_next_links(), if hasrobot(parsed_URL), check if the user agent is allowed to visit the page by implementing can_fetch(user_agent,URL) provided in urllib.robotparser library.
+
+
+"similarity-check" extra credit attempt:
+the chechsimilar() function in scraper.py compares the words dictionaries of two given URLs. [note: the two URLs are getting from the zipped list generated in scraper() function.] If two pages have almost the same amount (75%) of words, which have equal numbers of frequency of that certain word, then returns True. In scraper(), this will only adds the first page to the frontier.
+
+====================================================================================================================================
+Number of Unique Pages: 7516
+
+Longest Page: http://www.ics.uci.edu/%7Ewscacchi/Papers/Vintage/Software_Productivity.html 7978 words
+
+50 Most Common Words: 
+1: computer, 6101
+2: news, 5731
+3: projects, 5422
+4: students, 5265
+5: people, 4623
+6: blogs, 4489
+7: contact, 4444
+8: navigation, 4248
+9: events, 4130
+10: books, 4126
+11: management, 4097
+12: courses, 4010
+13: vision, 3880
+14: social, 3617
+15: current, 3497
+16: science, 3390
+17: university, 3357
+18: content, 3339
+19: california, 3294
+20: design, 3288
+21: support, 3281
+22: irvine, 3216
+23: privacy, 3212
+24: theme, 3208
+25: student, 3169
+26: computing, 3161
+27: wordpress, 3120
+28: share, 3110
+29: skip, 3075
+30: upcoming, 3044
+31: teaching, 3038
+32: software, 3028
+33: post, 3026
+34: community, 2964
+35: education, 2952
+36: email, 2902
+37: faculty, 2893
+38: life, 2891
+39: personal, 2888
+40: uci, 2875
+41: powered, 2800
+42: department, 2730
+43: future, 2673
+44: policy, 2667
+45: human, 2643
+46: website, 2623
+47: professional, 2610
+48: services, 2603
+49: course, 2599
+50: march, 2596
+
+
+Subdomains of .ics.uci.edu: 
+aiclub.ics.uci.edu, 2
+
+asterix.ics.uci.edu, 2
+
+calendar.ics.uci.edu, 1
+
+cbcl.ics.uci.edu, 5
+
+cert.ics.uci.edu, 3
+
+chenli.ics.uci.edu, 3
+
+cloudberry.ics.uci.edu, 77
+
+cml.ics.uci.edu, 4
+
+computableplant.ics.uci.edu, 31
+
+cradl.ics.uci.edu, 26
+
+cwicsocal18.ics.uci.edu, 26
+
+cyberclub.ics.uci.edu, 2
+
+duttgroup.ics.uci.edu, 1
+
+emj.ics.uci.edu, 73
+
+esl.ics.uci.edu, 1
+
+evoke.ics.uci.edu, 709
+
+flamingo.ics.uci.edu, 1
+
+fr.ics.uci.edu, 4
+
+futurehealth.ics.uci.edu, 15
+
+grape.ics.uci.edu, 4
+
+graphics.ics.uci.edu, 1
+
+graphmod.ics.uci.edu, 1
+
+hana.ics.uci.edu, 3
+
+helpdesk.ics.uci.edu, 1
+
+hombao.ics.uci.edu, 2
+
+honors.ics.uci.edu, 40
+
+i-sensorium.ics.uci.edu, 2
+
+informatics.ics.uci.edu, 1
+
+intranet.ics.uci.edu, 3
+
+isg.ics.uci.edu, 158
+
+jgarcia.ics.uci.edu, 15
+
+mailman.ics.uci.edu, 1
+
+malek.ics.uci.edu, 2
+
+mcs.ics.uci.edu, 74
+
+mdogucu.ics.uci.edu, 2
+
+mhcid.ics.uci.edu, 32
+
+mondego.ics.uci.edu, 1
+
+mse.ics.uci.edu, 1
+
+mswe.ics.uci.edu, 1
+
+nalini.ics.uci.edu, 15
+
+ngs.ics.uci.edu, 1836
+
+plrg.ics.uci.edu, 18
+
+redmiles.ics.uci.edu, 14
+
+riscit.ics.uci.edu, 2
+
+sconce.ics.uci.edu, 4
+
+sdcl.ics.uci.edu, 384
+
+seal.ics.uci.edu, 2
+
+sherlock.ics.uci.edu, 1
+
+sli.ics.uci.edu, 13
+
+sprout.ics.uci.edu, 1
+
+statconsulting.ics.uci.edu, 9
+
+student-council.ics.uci.edu, 1
+
+studentcouncil.ics.uci.edu, 1
+
+tastier.ics.uci.edu, 1
+
+transformativeplay.ics.uci.edu, 86
+
+tutors.ics.uci.edu, 1
+
+vision.ics.uci.edu, 2
+
+wics.ics.uci.edu, 1147
+
+www-db.ics.uci.edu, 12
+
+www.ics.uci.edu, 849
+
+xtune.ics.uci.edu, 1
+
